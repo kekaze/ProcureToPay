@@ -1,0 +1,6 @@
+@ProcureToPay_HostAddress = http://localhost:5170
+
+GET {{ProcureToPay_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
