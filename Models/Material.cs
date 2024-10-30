@@ -5,10 +5,15 @@ namespace ProcureToPay.Models
     public class Material
     {
         public int Id { get; set; }
+        public int MaterialCode { get; set; }
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public string MaterialName { get; set; } = string.Empty;
         [Required]
-        public decimal Price { get; set; }
+        public string Brand { get; set; } = string.Empty;
+        [Required]
+        public string Dimensions { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public ICollection<PurchaseRequest> PurchaseRequests { get; set; } = new List<PurchaseRequest>();
     }
 }
