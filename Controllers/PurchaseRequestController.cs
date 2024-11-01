@@ -14,6 +14,8 @@ namespace ProcureToPay.Controllers
         public PurchaseRequestController(ProcureToPayContext dbContext)
         {
             _dbContext = dbContext;
+
+            _dbContext.Database.EnsureCreated();
         }
 
         [HttpGet]

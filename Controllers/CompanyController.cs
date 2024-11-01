@@ -13,6 +13,8 @@ namespace ProcureToPay.Controllers
         public CompanyController(ProcureToPayContext dbContext)
         {
             _dbContext = dbContext;
+
+            _dbContext.Database.EnsureCreated();
         }
 
         [HttpGet]
