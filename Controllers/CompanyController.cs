@@ -14,12 +14,12 @@ namespace ProcureToPay.Controllers
         {
             _dbContext = dbContext;
         }
+
         [HttpGet]
         public async Task<ActionResult> GetCompanies()
         {
             IQueryable<Company> companies = _dbContext.Companies;
             return Ok(await companies.ToArrayAsync());
         }
-
     }
 }
