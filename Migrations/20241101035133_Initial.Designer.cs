@@ -12,7 +12,7 @@ using ProcureToPay.Models;
 namespace ProcureToPay.Migrations
 {
     [DbContext(typeof(ProcureToPayContext))]
-    [Migration("20241101024958_Initial")]
+    [Migration("20241101035133_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -62,7 +62,7 @@ namespace ProcureToPay.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Company");
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("ProcureToPay.Models.Inventory", b =>

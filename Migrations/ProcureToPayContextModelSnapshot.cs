@@ -59,7 +59,7 @@ namespace ProcureToPay.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Company");
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("ProcureToPay.Models.Inventory", b =>

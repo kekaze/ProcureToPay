@@ -12,7 +12,7 @@ namespace ProcureToPay.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Company",
+                name: "Companies",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -23,7 +23,7 @@ namespace ProcureToPay.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Company", x => x.Id);
+                    table.PrimaryKey("PK_Companies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,9 +79,9 @@ namespace ProcureToPay.Migrations
                 {
                     table.PrimaryKey("PK_Inventories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Inventories_Company_CompanyId",
+                        name: "FK_Inventories_Companies_CompanyId",
                         column: x => x.CompanyId,
-                        principalTable: "Company",
+                        principalTable: "Companies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -154,7 +154,7 @@ namespace ProcureToPay.Migrations
                 name: "PurchaseRequestMaterials");
 
             migrationBuilder.DropTable(
-                name: "Company");
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "Materials");

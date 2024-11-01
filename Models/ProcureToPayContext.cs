@@ -8,6 +8,7 @@ namespace ProcureToPay.Models
         public DbSet<Material> Materials { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<PurchaseRequest> PurchaseRequests { get; set; }
+        public DbSet<Company> Companies { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PurchaseRequest>()
