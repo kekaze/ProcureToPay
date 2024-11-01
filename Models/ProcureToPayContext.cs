@@ -46,6 +46,9 @@ namespace ProcureToPay.Models
 
             modelBuilder.Entity<PurchaseRequest>().Property(pr => pr.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
             modelBuilder.Entity<PurchaseRequest>().Property(pr => pr.UpdatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            modelBuilder.Seed();
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
