@@ -7,10 +7,10 @@ namespace ProcureToPay.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompanyController : ControllerBase
+    public class CompaniesController : ControllerBase
     {
         private readonly ProcureToPayContext _dbContext;
-        public CompanyController(ProcureToPayContext dbContext)
+        public CompaniesController(ProcureToPayContext dbContext)
         {
             _dbContext = dbContext;
 

@@ -7,11 +7,11 @@ namespace ProcureToPay.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PurchaseRequestController : ControllerBase
+    public class PurchaseRequestsController : ControllerBase
     {
         private readonly ProcureToPayContext _dbContext;
 
-        public PurchaseRequestController(ProcureToPayContext dbContext)
+        public PurchaseRequestsController(ProcureToPayContext dbContext)
         {
             _dbContext = dbContext;
 
