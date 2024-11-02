@@ -12,6 +12,8 @@ namespace ProcureToPay.Models
         public string Brand { get; set; } = string.Empty;
         [Required]
         public string Dimensions { get; set; } = string.Empty;
+        [Required]
+        public string Category { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public ICollection<PurchaseRequest> PurchaseRequests { get; set; } = new List<PurchaseRequest>();
