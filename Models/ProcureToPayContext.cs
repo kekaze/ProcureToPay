@@ -14,7 +14,17 @@ namespace ProcureToPay.Models
             modelBuilder.Entity<PurchaseRequest>()
                 .HasMany(pr => pr.Materials)
                 .WithMany(m => m.PurchaseRequests)
-                .UsingEntity(j => j.ToTable("PurchaseRequestMaterials"));
+                .UsingEntity<PurchaseRequestMaterial>(
+                    j => j
+                        .HasOne(pm => pm.Material)
+                        .WithMany(m => m.PurchaseRequestMaterials)
+                        .HasForeignKey(pm => pm.MaterialId),
+                    j => j
+                        .HasOne(pm => pm.PurchaseRequest)
+                        .WithMany(pr => pr.PurchaseRequestMaterials)
+                        .HasForeignKey(pm => pm.PurchaseRequestId),
+                    j => j.ToTable("PurchaseRequestMaterials")
+                );
 
             modelBuilder.Entity<PurchaseRequest>()
                 .HasIndex(m => m.PurchaseId)
