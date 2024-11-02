@@ -23,7 +23,18 @@ namespace ProcureToPay.Models
                         .HasOne(pm => pm.PurchaseRequest)
                         .WithMany(pr => pr.PurchaseRequestMaterials)
                         .HasForeignKey(pm => pm.PurchaseRequestId),
-                    j => j.ToTable("PurchaseRequestMaterials")
+                    j => j.ToTable("PurchaseRequestMaterials").HasData(
+                        new { PurchaseRequestId = 1, MaterialId = 1, Quantity = 1F },
+                        new { PurchaseRequestId = 1, MaterialId = 2, Quantity = 2F },
+                        new { PurchaseRequestId = 2, MaterialId = 1, Quantity = 1F },
+                        new { PurchaseRequestId = 3, MaterialId = 1, Quantity = 1F },
+                        new { PurchaseRequestId = 3, MaterialId = 2, Quantity = 4F },
+                        new { PurchaseRequestId = 3, MaterialId = 3, Quantity = 3F },
+                        new { PurchaseRequestId = 4, MaterialId = 5, Quantity = 2F },
+                        new { PurchaseRequestId = 5, MaterialId = 4, Quantity = 1F },
+                        new { PurchaseRequestId = 6, MaterialId = 3, Quantity = 1F },
+                        new { PurchaseRequestId = 6, MaterialId = 2, Quantity = 18F }
+                    )
                 );
 
             modelBuilder.Entity<PurchaseRequest>()
