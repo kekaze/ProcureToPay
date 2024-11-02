@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProcureToPay.Models;
 
@@ -11,9 +12,11 @@ using ProcureToPay.Models;
 namespace ProcureToPay.Migrations
 {
     [DbContext(typeof(ProcureToPayContext))]
-    partial class ProcureToPayContextModelSnapshot : ModelSnapshot
+    [Migration("20241102004230_UpdateSeedMaterialCodes")]
+    partial class UpdateSeedMaterialCodes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

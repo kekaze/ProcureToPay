@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProcureToPay.Models;
 
@@ -11,9 +12,11 @@ using ProcureToPay.Models;
 namespace ProcureToPay.Migrations
 {
     [DbContext(typeof(ProcureToPayContext))]
-    partial class ProcureToPayContextModelSnapshot : ModelSnapshot
+    [Migration("20241102003056_SeedMaterials")]
+    partial class SeedMaterials
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -200,7 +203,7 @@ namespace ProcureToPay.Migrations
                             Category = "Chemicals",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Dimensions = "208 Liters",
-                            MaterialCode = 200001,
+                            MaterialCode = 100003,
                             MaterialName = "Q8 Mahler G5 SAE 40",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -211,7 +214,7 @@ namespace ProcureToPay.Migrations
                             Category = "Spare Parts",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Dimensions = "Dimension AAA",
-                            MaterialCode = 100003,
+                            MaterialCode = 100004,
                             MaterialName = "Turbocharger 876 543",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -222,7 +225,7 @@ namespace ProcureToPay.Migrations
                             Category = "Chemicals",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Dimensions = "20 Liters",
-                            MaterialCode = 200002,
+                            MaterialCode = 100005,
                             MaterialName = "Shell Corena S4 R",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
