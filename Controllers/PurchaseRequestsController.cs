@@ -22,6 +22,7 @@ namespace ProcureToPay.Controllers
         public async Task<ActionResult> GetPurchaseRequests()
         {
             IQueryable<PurchaseRequest> purchaseRequests = _dbContext.PurchaseRequests;
+            IQueryable<PurchaseRequestMaterial> purchaseRequestMaterials = _dbContext.PurchaseRequestMaterials;
 
             return Ok(await purchaseRequests.ToArrayAsync());
         }
@@ -29,12 +30,17 @@ namespace ProcureToPay.Controllers
         [HttpGet("{purchaseRequestId}")]
         public async Task<ActionResult> GetPurchaseRequest(int purchaseRequestId)
         {
-            var purchaseRequest = await _dbContext.PurchaseRequests.FindAsync(purchaseRequestId);
+            IQueryable<PurchaseRequest> purchaseRequest = _dbContext.PurchaseRequests;
+
             if (purchaseRequest == null)
             {
                 return NotFound();
             }
-            return Ok(purchaseRequest);
+
+            purchaseRequest = purchaseRequest.Where(
+                pr => pr.PurchaseId == purchaseRequestId);
+
+            return Ok(await purchaseRequest.ToArrayAsync());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ProcureToPay.Models
 {
@@ -16,7 +17,9 @@ namespace ProcureToPay.Models
         public string Category { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        [JsonIgnore]
         public ICollection<PurchaseRequest> PurchaseRequests { get; set; } = new List<PurchaseRequest>();
+        [JsonIgnore]
         public ICollection<PurchaseRequestMaterial> PurchaseRequestMaterials { get; set; } = new List<PurchaseRequestMaterial>();
     }
 }
