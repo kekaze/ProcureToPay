@@ -15,6 +15,9 @@ namespace ProcureToPay.Models
         public string Status { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        [Required]
+        public int CompanyId { get; set; }
+        public virtual Company? Company { get; set; }
         public ICollection<Material> Materials { get; set; } = new List<Material>();
         public ICollection<PurchaseRequestMaterial> PurchaseRequestMaterials { get; set; } = new List<PurchaseRequestMaterial>();
     }

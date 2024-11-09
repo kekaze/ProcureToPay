@@ -33,12 +33,12 @@ namespace ProcureToPay.Models
             );
 
             modelBuilder.Entity<PurchaseRequest>().HasData(
-                new PurchaseRequest { Id = 1, PurchaseId = 435000001, Purpose = "For repair and maintenance of Engine 1", Type = "Normal", Status = "For approval" },
-                new PurchaseRequest { Id = 2, PurchaseId = 435000002, Purpose = "For repair and maintenance of Engine 2", Type = "Urgent", Status = "For approval" },
-                new PurchaseRequest { Id = 3, PurchaseId = 435000003, Purpose = "For repair and maintenance of Engine 3", Type = "Urgent", Status = "For approval" },
-                new PurchaseRequest { Id = 4, PurchaseId = 435000004, Purpose = "For 4000RH PMS of Air Compressor X", Type = "Normal", Status = "For approval" },
-                new PurchaseRequest { Id = 5, PurchaseId = 435000005, Purpose = "For annual maintenance of T/C for Engine 10", Type = "Normal", Status = "For approval" },
-                new PurchaseRequest { Id = 6, PurchaseId = 435000006, Purpose = "For 62000RH PMS of Engine 7", Type = "Normal", Status = "For approval" }
+                new PurchaseRequest { Id = 1, PurchaseId = 435000001, CompanyId = 1, Purpose = "For repair and maintenance of Engine 1", Type = "Normal", Status = "For approval" },
+                new PurchaseRequest { Id = 2, PurchaseId = 435000002, CompanyId = 2, Purpose = "For repair and maintenance of Engine 2", Type = "Urgent", Status = "For approval" },
+                new PurchaseRequest { Id = 3, PurchaseId = 435000003, CompanyId = 3, Purpose = "For repair and maintenance of Engine 3", Type = "Urgent", Status = "For approval" },
+                new PurchaseRequest { Id = 4, PurchaseId = 435000004, CompanyId = 1, Purpose = "For 4000RH PMS of Air Compressor X", Type = "Normal", Status = "For approval" },
+                new PurchaseRequest { Id = 5, PurchaseId = 435000005, CompanyId = 1, Purpose = "For annual maintenance of T/C for Engine 10", Type = "Normal", Status = "For approval" },
+                new PurchaseRequest { Id = 6, PurchaseId = 435000006, CompanyId = 2, Purpose = "For 62000RH PMS of Engine 7", Type = "Normal", Status = "For approval" }
             );
         }
     }

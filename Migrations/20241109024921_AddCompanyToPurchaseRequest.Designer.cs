@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProcureToPay.Models;
 
@@ -11,9 +12,11 @@ using ProcureToPay.Models;
 namespace ProcureToPay.Migrations
 {
     [DbContext(typeof(ProcureToPayContext))]
-    partial class ProcureToPayContextModelSnapshot : ModelSnapshot
+    [Migration("20241109024921_AddCompanyToPurchaseRequest")]
+    partial class AddCompanyToPurchaseRequest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +35,7 @@ namespace ProcureToPay.Migrations
 
                     b.Property<string>("CompanyId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -43,9 +46,6 @@ namespace ProcureToPay.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyId")
-                        .IsUnique();
 
                     b.ToTable("Companies");
 

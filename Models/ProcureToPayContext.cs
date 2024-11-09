@@ -38,12 +38,16 @@ namespace ProcureToPay.Models
                     )
                 );
 
-            modelBuilder.Entity<PurchaseRequest>()
-                .HasIndex(m => m.PurchaseId)
-                .IsUnique();
-
             modelBuilder.Entity<Material>()
                 .HasIndex(m => m.MaterialCode)
+                .IsUnique();
+
+            modelBuilder.Entity<Company>()
+                .HasIndex(c => c.CompanyId)
+                .IsUnique();
+
+            modelBuilder.Entity<PurchaseRequest>()
+                .HasIndex(pr => pr.PurchaseId)
                 .IsUnique();
 
             modelBuilder.Entity<Inventory>()
