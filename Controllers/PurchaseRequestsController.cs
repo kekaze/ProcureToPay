@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProcureToPay.Models;
+using static ProcureToPay.DTOs.ModelDtos;
 
 namespace ProcureToPay.Controllers
 {
@@ -27,20 +28,33 @@ namespace ProcureToPay.Controllers
         }
 
         [HttpGet("{purchaseRequestId}")]
-        public async Task<ActionResult> GetPurchaseRequest(int purchaseRequestId)
+        public async Task<ActionResult<SinglePurchaseRequestDto>> GetPurchaseRequest(int purchaseRequestId)
         {
-            IQueryable<PurchaseRequest> purchaseRequest = _dbContext.PurchaseRequests
-                .Include(pr => pr.Materials);
+            var purchaseRequest = await _dbContext.PurchaseRequests
+                .Where(pr => pr.PurchaseId == purchaseRequestId)
+                .Select(pr => new SinglePurchaseRequestDto
+                {
+                    PurchaseId = pr.PurchaseId,
+                    Purpose = pr.Purpose,
+                    Type = pr.Type,
+                    Status = pr.Status,
+                    CompanyId = pr.Company.CompanyId,
+                    CompanyName = pr.Company.CompanyName,
+                    Materials = pr.PurchaseRequestMaterials
+                        .Select(pm => new MaterialsDto
+                        {
+                            MaterialCode = pm.Material.MaterialCode,
+                            MaterialName = pm.Material.MaterialName,
+                            Quantity = pm.Quantity
+                        }).ToList()
+                }).ToArrayAsync();
 
             if (purchaseRequest == null)
             {
                 return NotFound();
             }
 
-            purchaseRequest = purchaseRequest.Where(
-                pr => pr.PurchaseId == purchaseRequestId);
-
-            return Ok(await purchaseRequest.ToArrayAsync());
+            return Ok(purchaseRequest);
         }
     }
 }
