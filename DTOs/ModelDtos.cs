@@ -11,6 +11,7 @@ namespace ProcureToPay.DTOs
             public string Purpose { get; set; } = string.Empty;
             public string Type { get; set; } = string.Empty;
             public string Status { get; set; } = string.Empty;
+            public DateTime CreatedAt { get; set; }
             public string CompanyId { get; set; } = string.Empty;
             public string CompanyName { get; set; } = string.Empty;
             public ICollection<MaterialsDto> Materials { get; set; } = new List<MaterialsDto>();

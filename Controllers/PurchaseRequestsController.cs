@@ -38,6 +38,7 @@ namespace ProcureToPay.Controllers
                     Purpose = pr.Purpose,
                     Type = pr.Type,
                     Status = pr.Status,
+                    CreatedAt = pr.CreatedAt,
                     CompanyId = pr.Company.CompanyId,
                     CompanyName = pr.Company.CompanyName,
                     Materials = pr.PurchaseRequestMaterials
@@ -47,7 +48,7 @@ namespace ProcureToPay.Controllers
                             MaterialName = pm.Material.MaterialName,
                             Quantity = pm.Quantity
                         }).ToList()
-                }).ToArrayAsync();
+                }).FirstOrDefaultAsync();
 
             if (purchaseRequest == null)
             {
