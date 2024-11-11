@@ -57,5 +57,14 @@ namespace ProcureToPay.Controllers
 
             return Ok(purchaseRequest);
         }
+
+        [HttpGet("{purchaseRequestId}/material/{materialCode}")]
+        public async Task<ActionResult<PurchaseRequestMaterial>> GetPrMaterials(int purchaseRequestId, int materialCode)
+        {
+            IQueryable<PurchaseRequestMaterial> purchaseRequestMaterials = _dbContext.PurchaseRequestMaterials.Where(
+                pr => pr.MaterialId == materialCode && pr.PurchaseRequestId == purchaseRequestId);
+
+            return Ok(await purchaseRequestMaterials.ToArrayAsync());
+        }
     }
 }
