@@ -12,48 +12,55 @@ namespace ProcureToPay.Models
         public DbSet<PurchaseRequestMaterial> PurchaseRequestMaterials { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PurchaseRequest>()
-                .HasMany(pr => pr.Materials)
-                .WithMany(m => m.PurchaseRequests)
+            modelBuilder.Entity<Material>()
+                .HasMany(pr => pr.PurchaseRequests)
+                .WithMany(m => m.Materials)
                 .UsingEntity<PurchaseRequestMaterial>(
-                    j => j
-                        .HasOne(pm => pm.Material)
-                        .WithMany(m => m.PurchaseRequestMaterials)
-                        .HasForeignKey(pm => pm.MaterialId),
                     j => j
                         .HasOne(pm => pm.PurchaseRequest)
                         .WithMany(pr => pr.PurchaseRequestMaterials)
                         .HasForeignKey(pm => pm.PurchaseRequestId),
+                    j => j
+                        .HasOne(pm => pm.Material)
+                        .WithMany(m => m.PurchaseRequestMaterials)
+                        .HasForeignKey(pm => pm.MaterialId),
                     j => j.ToTable("PurchaseRequestMaterials").HasData(
-                        new { PurchaseRequestId = 1, MaterialId = 1, Quantity = 1F },
-                        new { PurchaseRequestId = 1, MaterialId = 2, Quantity = 2F },
-                        new { PurchaseRequestId = 2, MaterialId = 1, Quantity = 1F },
-                        new { PurchaseRequestId = 3, MaterialId = 1, Quantity = 1F },
-                        new { PurchaseRequestId = 3, MaterialId = 2, Quantity = 4F },
-                        new { PurchaseRequestId = 3, MaterialId = 3, Quantity = 3F },
-                        new { PurchaseRequestId = 4, MaterialId = 5, Quantity = 2F },
-                        new { PurchaseRequestId = 5, MaterialId = 4, Quantity = 1F },
-                        new { PurchaseRequestId = 6, MaterialId = 3, Quantity = 1F },
-                        new { PurchaseRequestId = 6, MaterialId = 2, Quantity = 18F }
+                        new { PurchaseRequestId = 435000001, MaterialId = 100001, Quantity = 1F },
+                        new { PurchaseRequestId = 435000001, MaterialId = 100002, Quantity = 2F },
+                        new { PurchaseRequestId = 435000002, MaterialId = 100001, Quantity = 1F },
+                        new { PurchaseRequestId = 435000003, MaterialId = 100001, Quantity = 1F },
+                        new { PurchaseRequestId = 435000003, MaterialId = 100002, Quantity = 4F },
+                        new { PurchaseRequestId = 435000003, MaterialId = 200001, Quantity = 3F },
+                        new { PurchaseRequestId = 435000004, MaterialId = 200002, Quantity = 2F },
+                        new { PurchaseRequestId = 435000005, MaterialId = 100003, Quantity = 1F },
+                        new { PurchaseRequestId = 435000006, MaterialId = 200001, Quantity = 1F },
+                        new { PurchaseRequestId = 435000006, MaterialId = 100002, Quantity = 18F }
                     )
                 );
 
             modelBuilder.Entity<Material>()
-                .HasIndex(m => m.MaterialCode)
-                .IsUnique();
+                .HasKey(m => m.MaterialCode);
+
+            modelBuilder.Entity<Material>()
+                .Property(m => m.MaterialCode)
+                .ValueGeneratedNever();
 
             modelBuilder.Entity<Company>()
                 .HasIndex(c => c.CompanyId)
                 .IsUnique();
 
             modelBuilder.Entity<PurchaseRequest>()
-                .HasIndex(pr => pr.PurchaseId)
-                .IsUnique();
+                .HasKey(pr => pr.PurchaseId);
 
             modelBuilder.Entity<Inventory>()
                 .HasOne(i => i.Company)
                 .WithMany(c => c.Inventories)
                 .HasForeignKey(i => i.CompanyId);
+
+            modelBuilder.Entity<Inventory>()
+                .HasOne(i => i.Material)
+                .WithMany(c => c.Inventories)
+                .HasForeignKey(i => i.MaterialId);
 
             modelBuilder.Entity<Inventory>()
                 .Property(i => i.LatestPrice)

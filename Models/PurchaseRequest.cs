@@ -5,7 +5,6 @@ namespace ProcureToPay.Models
 {
     public class PurchaseRequest
     {
-        public int Id { get; set; }
         public int PurchaseId { get; set; }
         [Required]
         public string Purpose { get; set; } = string.Empty;

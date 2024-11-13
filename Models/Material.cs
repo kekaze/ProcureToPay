@@ -5,7 +5,6 @@ namespace ProcureToPay.Models
 {
     public class Material
     {
-        public int Id { get; set; }
         public int MaterialCode { get; set; }
         [Required]
         public string MaterialName { get; set; } = string.Empty;
@@ -21,5 +20,7 @@ namespace ProcureToPay.Models
         public ICollection<PurchaseRequest> PurchaseRequests { get; set; } = new List<PurchaseRequest>();
         [JsonIgnore]
         public ICollection<PurchaseRequestMaterial> PurchaseRequestMaterials { get; set; } = new List<PurchaseRequestMaterial>();
+        public virtual ICollection<Inventory> Inventories { get; set; } = new List<Inventory>();
+
     }
 }
